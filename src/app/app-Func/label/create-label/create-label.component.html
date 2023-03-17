@@ -1,0 +1,53 @@
+<h2 mat-dialog-title style="text-align: center;">TẠO MỚI NHÃN DÁN</h2>
+<mat-dialog-content class="mat-typography">
+  <div>
+    <form name="form"
+    (ngSubmit)="f.form.valid && ngOnInit()"
+    #f="ngForm"
+    novalidate>
+    <div class="form-group">
+        <label for="name">Tên nhãn dán</label>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          [(ngModel)]="form.name"
+          required
+          #name="ngModel"
+        />
+        
+      </div>
+      <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && name.invalid"
+        >
+          Tên nhãn dán không được bỏ trống!
+        </div>
+      <div class="form-group">
+        <label for="description">Mô tả</label>
+        <textarea
+          type="description"
+          class="form-control"
+          name="description"
+          [(ngModel)]="form.description"
+          required
+          #description="ngModel"
+        ></textarea>
+        </div>
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && description.invalid"
+        >
+          Mô tả tên nhãn dán không được bỏ trống!
+        </div>
+      <div class="form-group" style="margin-top: 20px;">
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button>Create</button>
+          </mat-dialog-actions>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>

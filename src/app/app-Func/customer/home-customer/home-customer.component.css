@@ -1,0 +1,59 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 9%;
+  }
+  .khachHang{
+    width: 11%;
+  }
+  .quyMo{
+    width: 8%;
+  }
+  .lienHe{
+    width: 6%;
+  }
+  .dauMoi{
+    width: 8%;
+  }
+  .phanLoai{
+    width: 8%;
+  }
+  .ruiRo{
+    width: 5%;
+  }
+  .nhanDan{
+    width: 8%;
+  }
+  .noiDungUp{
+    width: 13%;
+  }
+  .ngayBD{
+    width: 6%;
+  }
+  .ngayKT{
+    width: 6%;
+  }
+  .trangThai{
+    width: 9%;
+  }
+  .hanhDong{
+    width: 12%;
+  }
+  .bg-new{
+    background-color: #2d51d4;
+    color:#ffffff ;
+    padding: 5px;
+  }
+  .bg-update{
+    background-color: #ff8080;
+    color:#ffffff ;
+    padding: 5px;
+  }
+

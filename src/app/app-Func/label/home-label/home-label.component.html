@@ -1,0 +1,39 @@
+<div>
+    <mat-card>
+        <mat-card-content>
+            <mat-card-title>THÔNG TIN DANH MỤC PHÂN LOẠI </mat-card-title>
+            <button mat-raised-button style="float: right;"(click)="openDialog()">Thêm mới
+              <mat-icon>add</mat-icon></button> 
+        </mat-card-content>
+        </mat-card>
+</div>
+<div class="mat-elevation-z8" style="margin-top: 1%;">
+    <table mat-table [dataSource]="dataSourceLabel" matSort>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="khachHang" > Tên nhãn dán </th>
+        <td mat-cell *matCellDef="let row" class="khachHang"> {{row.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="description">Mô tả</th>
+        <td mat-cell *matCellDef="let row" class="description"> {{row.description}} </td>
+      </ng-container>
+      <ng-container matColumnDef="hanhDong">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="hanhDong">Hành động</th>
+          <td mat-cell *matCellDef="let row" class="hanhDong"> 
+            <button mat-raised-button style="width: 1%;" (click)="openDialogEdit(row)">Sửa
+              <mat-icon>edit</mat-icon>
+            </button> 
+            <button mat-raised-button style="width: 1%;margin-left: 5px;">Process</button> 
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      <!-- Row shown when there is no matching data. -->
+
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[20, 50, 100]" aria-label="Select page of customer"style="margin-top: 25%;"></mat-paginator>
+  </div>

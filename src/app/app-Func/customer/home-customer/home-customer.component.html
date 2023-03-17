@@ -1,0 +1,214 @@
+<form name="form"
+(ngSubmit)="ngOnInit()"
+#f="ngForm">
+  <mat-form-field style="width: 30%!important;height: 10%;">
+    <mat-label>Thông tin tiềm kiếm</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Nhập thông tin cần tìm kiếm" #input>
+  </mat-form-field>
+<mat-expansion-panel [expanded]="step === 1" hideToggle="true" style="margin-top: -1%;">
+  <mat-expansion-panel-header>
+      <mat-panel-description> Tìm kiếm năng cao theo thời gian tạo
+          <mat-icon>search</mat-icon>
+      </mat-panel-description>
+  </mat-expansion-panel-header>
+  <mat-form-field style="width: 20%!important;margin-top: 2px;">
+    <mat-label>Thời gian tạo từ</mat-label>
+  <input matInput placeholder="Date" [matDatepicker]="picker1" (focus)="picker1.open()" #input1 name="fromDate"
+  [(ngModel)]="formCustomer.dateFrom"
+  #fromDate="ngModel"> </mat-form-field>
+  <mat-datepicker #picker1></mat-datepicker>
+  <mat-form-field style="width: 20%!important;margin-left: 2%;">
+    <mat-label>Thời gian tạo đến</mat-label>
+  <input matInput placeholder="Date" [matDatepicker]="picker2" (focus)="picker2.open()" #input2 name="toDate"
+  [(ngModel)]="formCustomer.dateTo"
+  #toDate="ngModel"> </mat-form-field>
+  <mat-datepicker #picker2></mat-datepicker>
+  <mat-form-field style="width: 20%!important;margin-left: 2%;">
+    <mat-label>Thời gian cập nhật từ</mat-label>
+  <input matInput placeholder="Date" [matDatepicker]="picker3" (focus)="picker3.open()" #input3 name="fromDate"
+  [(ngModel)]="formCustomer.dateAddFrom"
+  #fromDate="ngModel"> </mat-form-field>
+  <mat-datepicker #picker3></mat-datepicker>
+  <mat-form-field style="width: 20%!important;margin-left: 2%;">
+    <mat-label>Thời gian cập nhật đến</mat-label>
+  <input matInput placeholder="Date" [matDatepicker]="picker4" (focus)="picker4.open()" #input4 name="toDate"
+  [(ngModel)]="formCustomer.dateAddTo"
+  #toDate="ngModel"> </mat-form-field>
+  <mat-datepicker #picker4></mat-datepicker>
+    <button mat-raised-button style="float: right;margin-top: 0.5%;">Tìm kiếm</button> 
+</mat-expansion-panel>
+
+<div fxLayout="row" fxLayoutWrap="wrap" style="margin-top: 0.5%;">
+  <!-- Card column -->
+  <div fxFlex.gt-sm="100%" fxFlex="100">
+      <mat-card>
+          <mat-card-content>
+              <mat-card-title>THÔNG TIN KHÁCH HÀNG </mat-card-title>
+              <button mat-raised-button style="float: right;">Thêm mới
+                <mat-icon>add</mat-icon></button> 
+              <button mat-raised-button style="float: right;margin-right: 1%;">Xuất File</button> 
+          </mat-card-content>
+          <mat-tab-group>
+              <mat-tab label="Khách hàng của tôi"><mat-card-content>
+                <div class="mat-elevation-z8" style="margin-top: 1%;">
+                  <table mat-table [dataSource]="dataSource" matSort>
+                
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="khachHang" > Khách Hàng </th>
+                      <td mat-cell *matCellDef="let row" class="khachHang"> {{row.name}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="contact">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="lienHe">Người liên hệ </th>
+                      <td mat-cell *matCellDef="let row" class="lienHe"> {{row.contact}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="customerSize">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="quyMo"> Quy mô khách hàng </th>
+                      <td mat-cell *matCellDef="let row" class="quyMo"> {{row.customerSize}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="agentCustomer">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="dauMoi"> Đầu mối liên hệ </th>
+                      <td mat-cell *matCellDef="let row" class="dauMoi"> {{row.agentCustomer}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="note">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="ruiRo"> Rủi ro </th>
+                      <td mat-cell *matCellDef="let row" class="ruiRo"> {{row.note}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="category">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="phanLoai"> Phân loại </th>
+                      <td mat-cell *matCellDef="let row" class="phanLoai"> {{row.category}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="label">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="nhanDan"> Nhãn dán </th>
+                      <td mat-cell *matCellDef="let row" class="nhanDan"> {{row.label}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="contentUpdate">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="noiDungUp"> Nội dung cập nhật </th>
+                      <td mat-cell *matCellDef="let row" class="noiDungUp"> {{row.contentUpdate}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="dateFrom">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="ngayBD"> Ngày bắt đầu </th>
+                      <td mat-cell *matCellDef="let row" class="ngayBD"> {{row.dateFrom|date:'dd/MM/yyyy'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="dateTo">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="ngayKT"> Ngày cập nhật</th>
+                      <td mat-cell *matCellDef="let row" class="ngayKT"> {{row.dateTo|date:'dd/MM/yyyy'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="trangThai"> Trạng thái</th>
+                        <td mat-cell *matCellDef="let row" class="trangThai"> 
+                        <div *ngIf="row.action===false">
+                          <span class="bg-update">Cập nhật</span>
+                        </div>
+                        <div *ngIf="row.action===true">
+                          <span class="bg-new">Thêm mới</span>
+                        </div> 
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="hanhDong">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="hanhDong">Hành động</th>
+                        <td mat-cell *matCellDef="let row" class="hanhDong"> 
+                          <button mat-raised-button style="width: 1%;">Sửa
+                            <mat-icon>edit</mat-icon>
+                          </button> 
+                          <button mat-raised-button style="width: 1%;margin-left: 5px;">Process</button> 
+                      </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                
+                    <!-- Row shown when there is no matching data. -->
+                      <tr class="mat-row" *matNoDataRow>
+                          <td class="mat-cell" colspan="12">No data matching the filter "{{input.value}}-{{input1.value}}-{{input2.value}}-{{input3.value}}-{{input4.value}}"</td>
+                        
+                      </tr>
+              
+                  </table>
+                
+                  <mat-paginator [pageSizeOptions]="[20, 50, 100]" aria-label="Select page of customer"style="margin-top: 25%;"></mat-paginator>
+                </div>
+              </mat-card-content></mat-tab>
+              <mat-tab label="Khách hàng của nhóm tôi"><mat-card-content>
+                <div class="mat-elevation-z8" style="margin-top: 1%;">
+                  <table mat-table [dataSource]="dataSource" matSort>
+                
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="khachHang" > Khách Hàng </th>
+                      <td mat-cell *matCellDef="let row" class="khachHang"> {{row.name}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="contact">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="lienHe">Người liên hệ </th>
+                      <td mat-cell *matCellDef="let row" class="lienHe"> {{row.contact}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="customerSize">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="quyMo"> Quy mô khách hàng </th>
+                      <td mat-cell *matCellDef="let row" class="quyMo"> {{row.customerSize}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="agentCustomer">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="dauMoi"> Đầu mối liên hệ </th>
+                      <td mat-cell *matCellDef="let row" class="dauMoi"> {{row.agentCustomer}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="note">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="ruiRo"> Rủi ro </th>
+                      <td mat-cell *matCellDef="let row" class="ruiRo"> {{row.note}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="category">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="phanLoai"> Phân loại </th>
+                      <td mat-cell *matCellDef="let row" class="phanLoai"> {{row.category}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="label">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="nhanDan"> Nhãn dán </th>
+                      <td mat-cell *matCellDef="let row" class="nhanDan"> {{row.label}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="contentUpdate">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="noiDungUp"> Nội dung cập nhật </th>
+                      <td mat-cell *matCellDef="let row" class="noiDungUp"> {{row.contentUpdate}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="dateFrom">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="ngayBD"> Ngày bắt đầu </th>
+                      <td mat-cell *matCellDef="let row" class="ngayBD"> {{row.dateFrom|date:'dd/MM/yyyy'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="dateTo">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="ngayKT"> Ngày cập nhật</th>
+                      <td mat-cell *matCellDef="let row" class="ngayKT"> {{row.dateTo|date:'dd/MM/yyyy'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="trangThai"> Trạng thái</th>
+                        <td mat-cell *matCellDef="let row" class="trangThai"> 
+                        <div *ngIf="row.action===false">
+                          <span class="bg-update">Cập nhật</span>
+                        </div>
+                        <div *ngIf="row.action===true">
+                          <span class="bg-new">Thêm mới</span>
+                        </div> 
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="hanhDong">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="hanhDong">Hành động</th>
+                        <td mat-cell *matCellDef="let row" class="hanhDong"> 
+                          <button mat-raised-button style="width: 1%;">Sửa 
+                          <mat-icon>setting</mat-icon>
+                          </button> 
+                          <button mat-raised-button style="width: 1%;margin-left: 5px;">Process</button> 
+                      </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                
+                    <!-- Row shown when there is no matching data. -->
+                      <tr class="mat-row" *matNoDataRow>
+                          <td class="mat-cell" colspan="12">No data matching the filter "{{input.value}}-{{input1.value}}-{{input2.value}}-{{input3.value}}-{{input4.value}}"</td>
+                        
+                      </tr>
+              
+                  </table>
+                
+                  <mat-paginator [pageSizeOptions]="[20, 50, 100]" aria-label="Select page of customer" style="margin-top: 25%;"></mat-paginator>
+                </div>
+              </mat-card-content></mat-tab>
+          </mat-tab-group>
+      </mat-card>    
+  </div>
+</div>
+</form>

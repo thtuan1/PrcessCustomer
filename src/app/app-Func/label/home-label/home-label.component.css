@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 9%;
+  }
+  .khachHang{
+    width: 40%;
+  }
+  .description{
+    width: 48%;
+  }
+  .hanhDong{
+    width: 12%;
+  }
+  .bg-new{
+    background-color: #2d51d4;
+    color:#ffffff ;
+    padding: 5px;
+  }
+  .bg-update{
+    background-color: #ff8080;
+    color:#ffffff ;
+    padding: 5px;
+  }
+
