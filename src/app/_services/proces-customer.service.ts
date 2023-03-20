@@ -62,8 +62,7 @@ export class ProcesCustomerService {
     }, httpOptions)
 
   }
-  getOneLabel():Observable<labelData[]>{
-    const idUser=this.token.getIdUser();
-    return  this.http.get<labelData[]>(URL_API+"Label/getAllByOwner?id="+idUser)
+  getOneLabel(id:Number){
+    return  this.http.get(URL_API+"Label/details?id="+id)
   }
 }

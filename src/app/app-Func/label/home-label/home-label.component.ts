@@ -6,7 +6,7 @@ import { ProcesCustomerService } from 'src/app/_services/proces-customer.service
 import {MatDialog} from '@angular/material/dialog';
 import {CreateLabelComponent} from'../create-label/create-label.component'
 import {EditLabelComponent} from '../edit-label/edit-label.component'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 export interface labelData{
   id:String,
   name:String,
@@ -30,7 +30,7 @@ export class HomeLabelComponent implements OnInit,AfterViewInit{
   constructor(
     private process_customer: ProcesCustomerService,
     private openPopup:MatDialog,
-    private editLabel:EditLabelComponent){}
+    private router:Router){}
   ngAfterViewInit() {
     
   }
@@ -57,10 +57,10 @@ export class HomeLabelComponent implements OnInit,AfterViewInit{
   }
   openDialogEdit(row :any) {
     this.id=row.id
-    this.editLabel.editData(this.id).subscribe(data=>{
-      this.oneLabel=data
-      console.log(this.oneLabel)
-    })
+  this.router.navigateByUrl('/label/'+this.id)
+  //   this.editLabel.editData(this.id).subscribe(data=>{
+  //     this.oneLabel=data
+  //   })
     const dialogRef = this.openPopup.open(EditLabelComponent,{
       height: '500px',
       width: '600px',
@@ -71,4 +71,5 @@ export class HomeLabelComponent implements OnInit,AfterViewInit{
       console.log(`Dialog result: ${result}`);
     });
   }
+  
 }

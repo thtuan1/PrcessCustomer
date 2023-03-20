@@ -20,5 +20,9 @@ export const FunctionRouting: Routes = [
   {
     path: 'label',
     component: HomeLabelComponent
+  },
+  {
+    path: 'label/:id',
+    component: HomeLabelComponent
   }
 ]
